@@ -43,18 +43,12 @@ class ProfileController extends Controller
         $profile = Profile::find($request->id);
       
         $profile_form = $request->all();
-        if(isset($profile_form['name'])) {
-            $path = $request->file('name')->store('public/name');
-            $profile->name_path = basename($path);
-            unset($profile_form['name']);
-        } elseif (isset($request->remove)) {
-          $profile->$profile_path = null;
-          unset($profile_form['remove']);
-        }
-
         unset($profile_form['_token']);
 
         $profile->fill($profile_form)->save();
-        return redirect('admin/profile/edit');
+
+        return redirect('admin/profile/create');
     }
+
+    
 }
