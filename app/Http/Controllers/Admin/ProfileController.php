@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 
 use App\Profile;
 
+use App\Log;
+
+use Carbon\Carbon;
+
 class ProfileController extends Controller
 {
     //
@@ -46,8 +50,13 @@ class ProfileController extends Controller
         unset($profile_form['_token']);
 
         $profile->fill($profile_form)->save();
+        
+        $log = new Log;
+        $log->profile_id = $profile->id;
+        $log->updated_at = Carbon::now();
+        $log->save();
 
-        return redirect('admin/profile/edit');
+        return redirect('admin/profile/');
     }
 
     
