@@ -54,10 +54,10 @@ class ProfileController extends Controller
         $log = new Log;
         $log->profile_id = $request->id;
         $log->updated_at = Carbon::now();
-        $log->timestamps = false;
+        $log->timestamps = false; 
         $log->save();
 
-        return redirect('admin/profile/');
+        return redirect('admin/profile/create');
     }
 
     

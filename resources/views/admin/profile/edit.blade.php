@@ -49,7 +49,7 @@
                     <div class="col-md-4 mx-auto">
                         <h2>更新履歴</h2>
                         <ul class="list-group">
-                            @if (is_null($profile_form->logs))
+                            @if (!is_null($profile_form->logs))
                                 @foreach ($profile_form->logs as $log)
                                     <li class="list-group-item">{{ $log->updated_at }}</li>
                                 @endforeach
